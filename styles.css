@@ -1,0 +1,123 @@
+/* Import the fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+@import url('https://rsms.me/inter/inter.css');
+/* Define the Nord colors as CSS variables */
+:root {
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+  }
+/* Set the page background to dark */
+body {
+    background-color: var(--nord0);
+    color: var(--nord4);
+    margin: 0;
+}
+
+/* Use Roboto Slab for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif;
+}
+
+/* Use Inter for normal text */
+p, li, span, a {
+  font-family: 'Inter', sans-serif;
+}
+/* Use flexbox to align the top bar elements */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  /* Style the website title */
+  .website-title {
+    color: var(--nord6);
+    font-size: 32px;
+    margin: 0;
+  }
+  
+  /* Style the navigation links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    color: var(--nord8);
+    text-decoration: none;
+  }
+  .nav-links a:hover {
+    color: var(--nord6);
+  }
+  .container {
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add left and right paddings */
+  }
+/* Use the image-crop class to style the div element */
+.image-crop {
+    /* Set the width and height of the div element */
+    width: 100vw;
+    height: 40vw;
+    /* Use overflow: hidden to hide the parts of the image that exceed the div boundaries */
+    overflow: hidden;
+  }
+  
+  /* Use the img selector to style the image element */
+  img {
+    /* Set the width of the image to 100% of its parent element */
+    width: 100%;
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    text-align: center;
+  }
+  .codeblock {
+    font-family: monospace;
+    background-color: #3b4252;
+  }
+  .tip {
+    background-color:var(--nord7);
+  }
+  /* Define a linear-gradient with two or more colors */
+.gradient {
+    background: linear-gradient(to right, --nord15, --nord14, --nord13, --nord12);
+  }
+  
+  /* Define an animation that moves the background-position from left to right */
+  @keyframes move {
+    from {
+      background-position: 0%;
+    }
+    to {
+      background-position: 100%;
+    }
+  }
+  
+  /* Apply the animation to the element with infinite loop and duration */
+  .gradient {
+    animation: move 5s infinite;
+  }

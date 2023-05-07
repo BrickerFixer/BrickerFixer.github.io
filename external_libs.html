@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="styles.css">
+<html>
+    <head>
+        <div class="top-bar">
+            <h1 class="website-title">Android Den</h1>
+            <ul class="nav-links">
+              <li><a href="ad_home.html">Главная</a></li>
+              <li><a href="basics.html">Основы</a></li>
+              <li><a href="OOP.html">ООП</a></li>
+              <li><a href="android.html">Android</a></li>
+              <li><a href="structures.html">Структуры</a></li>
+              <li><a href="web.html">Web-Взаимодействие</a></li>
+              <li><a href="external_libs.html">Бонус</a></li>
+            </ul>
+          </div>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bumptech Glide как средство загрузки изображений из Интернета</h1>
+            <h2>Преимущества Glide над простой загрузкой Bitmap и Picasso</h2>
+            <p>Glide является простой в использовании и быстрой библиотекой кэширования изображений для android</p>
+            <p>Хоть кодовая база и не такая чистая как у библиотеки Picasso, и хоть у него меньше возможностей, но он сам по себе легче и быстрее работает с большим объёмом изображений (допустим, Glide сжимает/обрезает изображения прямо на лету, а не делает это после загрузки как Picasso что, кстати, может потреблять больше ресурсов внутренней памяти)</p>
+            <h2>Пример загрузки изображения:</h2>
+            <div class="codeblock">Glide.with(context).load(Uri).into(ImageView)</div>
+            <br>
+            <div class="tip"><div class="codeblock">context</div>Может являться и ImageView, и активити, и контекстом.</div>
+            <p>Помимо этого в Glide можно использовать анимации, плейсхолдеры и картинки при ошибке загрузки</p>
+            <h1>Google Exoplayer - Плеер с продвинутой поддержкой воспроизведения интернет медиа и трансляций</h1>
+            <h2>Dash? HTTP?? SmoothStreaming???</h2>
+        </div>
+    </body>
+</html>

@@ -121,3 +121,11 @@ p, li, span, a {
   .gradient {
     animation: move 5s infinite;
   }
+
+  .block{
+    background: url(./404_gag.png);
+    width:800px;
+    height: 400px;
+    background-size: cover;
+    margin-left: 30%;
+  }

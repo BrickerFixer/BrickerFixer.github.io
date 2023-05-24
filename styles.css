@@ -1,6 +1,7 @@
 /* Import the fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
 /* Define the Nord colors as CSS variables */
 :root {
     --nord0: #2e3440;
@@ -28,7 +29,7 @@ body {
 }
 
 /* Use Roboto Slab for headings */
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
   font-family: 'Roboto Slab', serif;
 }
 
@@ -121,11 +122,28 @@ p, li, span, a {
   .gradient {
     animation: move 5s infinite;
   }
+  .image-scale {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+  .container {
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add left and right paddings */
+  }
+  h1 {
+    color: #f0c674;
+    font-family: 'Fugaz One', cursive;
+    text-align: center;
+    font-size: 64px;
+  }
 
-  .block{
-    background: url(./404_gag.png);
-    width:800px;
-    height: 400px;
-    background-size: cover;
-    margin-left: 30%;
+  .centered-p {
+    text-align: center;
+  }
+  
+  a {
+    color: #ffcb6b;
   }

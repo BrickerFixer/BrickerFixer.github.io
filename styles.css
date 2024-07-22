@@ -1,0 +1,82 @@
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #303446;
+    position: relative;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    background: #414559;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    color: #c6d0f5;
+}
+
+.header img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.header h1 {
+    margin: 10px 0;
+}
+
+.about, .contacts {
+    margin-bottom: 20px;
+}
+
+.contacts a {
+    color: #f2d5cf;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.contacts a:hover {
+    text-decoration: underline;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.icon {
+    font-family: 'Material Symbols Rounded';
+    position: absolute;
+    font-size: 64px;
+    transition: transform 0.3s;
+    color:	#f2d5cf;
+}
+
+.icon:hover {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* Цвета Catppuccin */
+.shape.color1 { background: #f28fad; }
+.shape.color2 { background: #d67ad2; }
+.shape.color3 { background: #98c379; }
+.shape.color4 { background: #61afef; }
+.shape.color5 { background: #e5c07b; }
+.shape.color6 { background: #e06c75; }
+.shape.color7 { background: #56b6c2; }
+.shape.color8 { background: #c678dd; }

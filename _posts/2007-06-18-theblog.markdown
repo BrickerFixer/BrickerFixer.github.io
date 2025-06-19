@@ -1,0 +1,54 @@
+---
+layout: post
+title:  "This... Is my blog."
+date:   2007-06-18 15:30:48 +0400
+tags: personal
+---
+You know, it's mostly like this "oh hello my computer people, this will be my blog forever and ever", then they start telling about themselves. Well, it's not going to be like this. It's just going to be my random thoughts that span across this digital canvas... Okay, no, it'll start like usual.
+
+Hello, I am Bricker (Further referred in the other posts as just B, just for the sake of keeping it short). I am a teen that tries to develop some applications that are better off be closed from society altogether, because they end up flopping miserably.
+
+What I know:
+- Java (specifically Android dev)
+- Some Kotlin (specifically Android dev)
+- Python (basics, but I have some experience in FastAPI)
+- Linux
+
+I made this blog just to share my thoughts and not leave my github pages space empty. Here I'll tell about projects of mine and possibly share some new stuff. Consider it a... Dumpster of sorts.
+
+---
+
+>**What i like**
+
+- Frutiger Aero
+- 2000's tv channel design
+- Tv channel's inner workings
+- Old tech, mostly mobile (old android devices of 2.3-7.0 eras, WM, WP, other obscure OS's)
+- Customizing my linux desktop to look like an older windows version
+- Sushi (I like that the soy sauce is salty, so don't complain that if I find it in your drawer or fridge, I'll drink it all.)
+- My cat
+- My family
+- Enthusiast projects that reverse-engineer and revive software
+- Admin panels (MIIIINE BUTTONS MIIIINE >:3333)
+
+---
+
+>**Bro... this site is ass...**
+
+Yea i know, it's supposed to look like some forum homepage dedicated to some niche hobby like modding playstation consoles. I don't think i wanted it to turn out like this, but to me, it looks sick!
+
+---
+
+>**No I mean what was this built on... looks weird.**
+
+Jekyll, of course! It's a platform that github pages work on. I can't afford anything really interactive here, so I stick with this github pages stuff, because it's free!
+
+---
+
+>**Why bricker? Kind of a shitty name yk**
+
+I earned that name as a title for bricking and blocking my main phone's potential ways of recovery from android 12 beta ROM, so I got stuck on it, until finding a way to recover.
+
+---
+
+Got anything more to talk about? You can hit me up on discord with a tag @waffuru.rs.

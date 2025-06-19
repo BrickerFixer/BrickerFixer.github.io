@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="windows-1251">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}BrickerFixer's blog</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, Verdana, sans-serif;
+            font-size: 11px;
+            background: #f5f5f5 url('data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==') repeat;
+            color: #333;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: repeating-linear-gradient(45deg,transparent,transparent 4px,#99b97323 6px), linear-gradient(to bottom, #d0fa9d ,#9AB973, #325e14);
+            color: white;
+            padding: 15px 20px;
+            border-bottom: 3px solid #c07747;
+        }
+        @font-face {
+            font-family: "Visitor";
+            src: url(/visitor/visitor1.ttf);
+        }
+        .header h1 {
+            font-family: "Visitor";
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 0px black;
+        }
+        .header .subtitle {
+            font-size: 10px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        .nav {
+            background: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 20px;
+            font-size: 10px;
+        }
+        .nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            display: flex;
+        }
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            background: #f8f8f8;
+            border-left: 1px solid #ddd;
+            padding: 15px;
+        }
+        .post {
+            margin-bottom: 30px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 20px;
+        }
+        .post-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+        .post-meta {
+            font-size: 9px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .post-content {
+            line-height: 1.4;
+            text-align: justify;
+        }
+        .post-tags {
+            margin-top: 10px;
+            font-size: 9px;
+        }
+        .post-tags a {
+            background: #e6f2ff;
+            color: #0066cc;
+            padding: 2px 5px;
+            text-decoration: none;
+            margin-right: 5px;
+            border: 1px solid #cce6ff;
+        }
+        .sidebar h3 {
+            font-size: 11px;
+            color: #333;
+            margin: 0 0 10px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .sidebar li {
+            margin-bottom: 5px;
+            font-size: 10px;
+        }
+        .sidebar a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .quote {
+            background: #f0f8ff;
+            border-left: 3px solid #0066cc;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .code {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .footer {
+            background: #f0f0f0;
+            border-top: 1px solid #ccc;
+            padding: 10px 20px;
+            font-size: 9px;
+            color: #666;
+            text-align: center;
+        }
+        .emoticon {
+            font-family: 'Comic Sans MS', cursive;
+        }
+        .highlight {
+            background: yellow;
+            padding: 1px 3px;
+        }
+        .counter {
+            background: url('data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+            width: 80px;
+            height: 15px;
+            display: inline-block;
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 9px;
+            text-align: center;
+            line-height: 15px;
+            border: 1px inset #666;
+        }
+        body {
+            background: linear-gradient(90deg, transparent 0%, #333333c0 25%, #333333c0 75%, transparent 100%), url("/background.jpg");
+            background-size: cover;
+            background-position-y: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Brickerfixer's ugly blogsite</h1>
+            <div class="subtitle">"Time to serve drinks and change lives!"</div>
+        </div>
+        <div class="nav">
+            <a href="/">Main</a>
+            <a href="/archive/">Archive</a>
+            <a href="/about/">About me</a>
+            <a href="/links/">Links</a>
+            <a href="/guestbook/">Guestbook</a>
+        </div>
+        <div class="content">
+            <div class="main">
+                {{ content }}
+            </div>
+            <div class="sidebar">
+                <!-- ...existing sidebar code... -->
+                <h3>About blog</h3>
+                <p style="font-size: 10px; line-height: 1.3;">Hi! My nickname's Bricker (Waffuru). I love: Low level code (fascinated by it, but I don't know how to code like that), Linux, legacy hardware, mobile compute, design of tv idents. I hate: mondays, feed algorithms, when tea is cold :3</p>
+                <h3>Recent posts</h3>
+                <ul>
+                    {% for post in site.posts limit:5 %}
+                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                <h3>Tags</h3>
+                <div style="font-size: 9px;">
+                    {% assign tags = site.tags | sort %}
+                    {% for tag in tags %}
+                    <a href="#" style="font-size: 10px;">{{ tag[0] }}</a>
+                    {% endfor %}
+                </div>
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://habr.com/en/">Habr.com</a></li>
+                    <li><a href="https://ovk.to/id17274">My OpenVK profile!</a></li>
+                    <li><a href="https://башорг.рф/">Bash.org (Runet quotepage)</a></li>
+                    <li><a href="https://4pda.to/forum">4PDA Forum</a></li>
+                    <li><a href="https://github.com/BrickerFixer">My github profile, if you missed it</a></li>
+                    <li><a href="#">Index search engine (soon!)</a></li>
+                </ul>
+                <h3>Archive</h3>
+                <ul>
+                    {% for post in site.posts %}
+                    {% assign y = post.date | date: "%B %Y" %}
+                    {% unless y == last_year %}
+                    <li><a href="#">{{ y }}</a></li>
+                    {% assign last_year = y %}
+                    {% endunless %}
+                    {% endfor %}
+                </ul>
+                <h3>Honorable Mentions</h3>
+                <ul>
+                    <li><a href="https://saberpedia.no/">Celestora's Saberpedia</a></li>
+                    <li><a href="https://oldgoogle.neocities.org/">Old Google</a></li>
+                    <li><a href="https://bingwallpaper.anerg.com/">Bing Wallpaper archive</a></li>
+                    <li><a href="https://escargot.chat/">Escargot Chat</a></li>
+                    <li><a href="https://nina.chat/">Nina Chat</a></li>
+                    <li><a href="https://trinitydesktop.org/">Trinity Desktop Environment</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            © 2007 Brickerfixer's blog | Powered by Jekyll | Best viewed in Firefox 2.0+ | Photo by <a href="https://unsplash.com/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Annie Spratt</a> on <a href="https://unsplash.com/photos/a-bird-is-perched-on-a-branch-of-a-tree-tU3P7raNkNQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | <a href="mailto:brickerfixer@gmail.com">brickerfixer@gmail.com</a>
+        </div>
+    </div>
+</body>
+</html>

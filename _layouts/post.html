@@ -1,0 +1,16 @@
+---
+layout: custom
+---
+
+<div class="post">
+    <div class="post-title">{{ page.title }}</div>
+    <div class="post-meta">{{ page.date | date: "%d.%m.%Y | %H:%M" }} | Комментарии ({{ page.comments | default: 0 }}) | Просмотров: {{ page.views | default: 0 }}</div>
+    <div class="post-content">
+        {{ content }}
+    </div>
+    <div class="post-tags">
+        {% for tag in page.tags %}
+        <a href="#">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>

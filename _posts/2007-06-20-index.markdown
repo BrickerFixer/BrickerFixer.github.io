@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Index"
+date:   2007-06-20 00:00:00 +0400
+tags: index nerding
+---
+
+You know... Yandex was a pretty much ethical company, like 10 years or so ago. Their products have been good for Russian internet user niche, these products were pretty okay in terms of design, and the company was not that scared to innovate.
+Times have changed, Yandex is no longer that good, so I find this situation quite double-sided... Why not create that yandex that's long lost?
+
+No. Creating *THAT* yandex is going to lead me to legal trouble. Perhaps, do it my own way? Like... decentralize and federate the structure, but borrow some concepts..?
+
+That's how Index was born. Sure, the name is similar and the frontend is based on yandex's BEM frontend from 2013 beta test of Islands feature, but it isn't that bland! It's got something to offer:
+
+- Search nodes - these allow you to search on various sources and be federated by node owners, splitting the frontend and backend into several parts
+- Enhanced customization - you can change CSS themes, backgrounds, add your own interactive search blocks called Islands, or add widgets to homepage!
+- High structural integrity - because the backend is split into nodes, if one node gets struck, the rest still work with searches completing successfully. Nothing collapses, except several features that don't touch user experience.
+- Fun - I try to add something fun or stylish to search, trying something weird and fun... Like adding a Pringles can as a widget for a homepage. Yea.

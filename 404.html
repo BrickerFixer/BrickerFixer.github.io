@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you lost?</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0f1c29;
+            user-select: none;
+        }
+
+        canvas {
+            display: block;
+            /* Ensures crisp edges if browser tries to scale */
+            image-rendering: pixelated; 
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="stage"></canvas>
+
+<script>
+    /** 
+     * CONFIGURATION
+     */
+    const FPS = 16;
+    const FRAME_DURATION = 1000 / FPS;
+    
+    const COLORS = {
+        bg: '#0f1c29',        
+        accent: '#d6336c',    // Raspberry
+        grid: 'rgba(148, 163, 184, 0.05)'
+    };
+
+    const canvas = document.getElementById('stage');
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    let width, height;
+    let lastTime = 0;
+    let blinkTimer = 0;
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(animate);
+
+    /**
+     * MAIN LOOP
+     */
+    function animate(timestamp) {
+        requestAnimationFrame(animate);
+
+        const elapsed = timestamp - lastTime;
+        if (elapsed < FRAME_DURATION) return;
+        lastTime = timestamp - (elapsed % FRAME_DURATION);
+
+        // Update Logic
+        blinkTimer += 0.1;
+
+        // Draw BG
+        ctx.fillStyle = COLORS.bg;
+        ctx.fillRect(0, 0, width, height);
+
+        drawBigSlowGrid(timestamp);
+        drawTruePixelCross();
+    }
+
+    function drawBigSlowGrid(time) {
+        ctx.beginPath();
+        ctx.strokeStyle = COLORS.grid;
+        ctx.lineWidth = 2; // Keep grid slightly smooth for contrast, or use 1 for sharpness
+        
+        const gridSize = 150; 
+        const speed = 0.005; 
+        const offsetX = (time * speed) % gridSize;
+        const offsetY = (time * speed) % gridSize;
+
+        // Snap to integers for cleaner lines
+        const iOffsetX = Math.floor(offsetX);
+        const iOffsetY = Math.floor(offsetY);
+
+        for(let x = -gridSize + iOffsetX; x < width; x += gridSize) {
+            ctx.moveTo(Math.floor(x) + 0.5, 0); // 0.5 fix for crisp 1px lines
+            ctx.lineTo(Math.floor(x) + 0.5, height);
+        }
+        for(let y = -gridSize + iOffsetY; y < height; y += gridSize) {
+            ctx.moveTo(0, Math.floor(y) + 0.5);
+            ctx.lineTo(width, Math.floor(y) + 0.5);
+        }
+        ctx.stroke();
+    }
+
+    function drawTruePixelCross() {
+        const pixelSize = 16; // Size of one "pixel" block
+        const armLength = 7;  // How many pixels from center outward
+        
+        const cx = Math.floor(width / 2);
+        const cy = Math.floor(height / 2);
+
+        ctx.fillStyle = COLORS.accent;
+        
+        // Blink effect
+        if (Math.sin(blinkTimer) > 0.9) return; // Disappear briefly
+
+        // Draw Center Pixel
+        drawPixel(cx, cy, pixelSize);
+
+        // Draw Diagonals
+        for (let i = 1; i <= armLength; i++) {
+            const offset = i * pixelSize;
+
+            // Top-Left
+            drawPixel(cx - offset, cy - offset, pixelSize);
+            // Bottom-Right
+            drawPixel(cx + offset, cy + offset, pixelSize);
+            // Top-Right
+            drawPixel(cx + offset, cy - offset, pixelSize);
+            // Bottom-Left
+            drawPixel(cx - offset, cy + offset, pixelSize);
+        }
+    }
+
+    function drawPixel(x, y, size) {
+        // Center the pixel on the coordinate
+        const drawX = Math.floor(x - size / 2);
+        const drawY = Math.floor(y - size / 2);
+        ctx.fillRect(drawX, drawY, size, size);
+    }
+
+</script>
+</body>
+</html>

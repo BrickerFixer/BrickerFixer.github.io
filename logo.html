@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WinterMere</title>
+
+<style>
+html, body {
+    margin: 0;
+    width: 88px;
+    height: 31px;
+    overflow: hidden;
+    background: white;
+}
+
+canvas {
+    display: block;
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="c" width="88" height="31"></canvas>
+
+<script>
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+const W = canvas.width;
+const H = canvas.height;
+
+const INK = "#615770";
+const TEXT = "WinterMere";
+
+// ----------------------------
+// Build letters
+// ----------------------------
+
+ctx.font = "bold 13px Georgia, 'Times New Roman', serif";
+ctx.textBaseline = "middle";
+ctx.textAlign = "left";
+
+let totalWidth = 0;
+
+for (const ch of TEXT)
+    totalWidth += ctx.measureText(ch).width;
+
+let cursor = (W - totalWidth) / 2;
+
+const letters = [];
+
+for (const ch of TEXT) {
+
+    const w = ctx.measureText(ch).width;
+
+    letters.push({
+
+        char: ch,
+
+        homeX: cursor,
+        homeY: H / 2,
+
+        x: cursor,
+        y: H / 2,
+
+        angle: 0,
+        scale: 1,
+
+        vx: 0,
+        vy: 0,
+
+        spin: 0,
+        growth: 0,
+
+        exploded: false,
+
+        delay: Math.random() * 0.35,
+
+        seed: Math.random() * 10000
+
+    });
+
+    cursor += w;
+
+}
+
+// ----------------------------
+// Animation
+// ----------------------------
+
+const IDLE = 0;
+const SHAKE = 1;
+const EXPLODE = 2;
+const DONE = 3;
+
+let state = IDLE;
+let stateTime = 0;
+
+let previous = performance.now();
+
+function rand(seed) {
+    return Math.sin(seed) * 43758.5453 % 1;
+}
+
+function explode(letter) {
+
+    letter.exploded = true;
+
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 10 + Math.random() * 1;
+
+    letter.vx = Math.cos(angle) * speed;
+    letter.vy = Math.sin(angle) * speed;
+
+    letter.spin = (Math.random() - 0.5) * 20;
+
+    letter.growth = 0.6 + Math.random() * 2;
+
+}
+
+function update(dt) {
+
+    stateTime += dt;
+
+    switch (state) {
+
+        case IDLE:
+
+            if (stateTime > 2) {
+
+                state = SHAKE;
+                stateTime = 0;
+
+            }
+
+            break;
+
+        case SHAKE:
+
+            if (stateTime > 0.5) {
+
+                state = EXPLODE;
+                stateTime = 0;
+
+            }
+
+            break;
+
+        case EXPLODE:
+
+            let active = false;
+
+            for (const l of letters) {
+
+                if (!l.exploded && stateTime >= l.delay)
+                    explode(l);
+
+                if (!l.exploded)
+                    active = true;
+
+            }
+
+            for (const l of letters) {
+
+                if (!l.exploded)
+                    continue;
+
+                l.x += l.vx * dt;
+                l.y += l.vy * dt;
+
+                l.angle += l.spin * dt;
+
+                l.scale += l.growth * dt;
+
+            }
+
+            if (!active && stateTime > 0.5)
+                state = DONE;
+
+            break;
+
+        case DONE:
+            // Freeze forever.
+            break;
+
+    }
+
+}
+
+function draw() {
+
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.strokeStyle = INK;
+    ctx.strokeRect(0.5, 0.5, W - 1, H - 1);
+
+    ctx.fillStyle = INK;
+    ctx.font = "bold 13px 'Times New Roman', serif";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "left";
+
+    for (const l of letters) {
+
+        let drawX = l.x;
+        let drawY = l.y;
+
+        if (state === SHAKE) {
+
+            drawX += Math.round((Math.random() - 0.5) * 2);
+            drawY += Math.round((Math.random() - 0.5) * 2);
+
+        }
+
+        ctx.save();
+
+        ctx.translate(drawX, drawY);
+
+        ctx.rotate(l.angle);
+
+        ctx.scale(l.scale, l.scale);
+
+        ctx.fillText(l.char, 0, 0);
+
+        ctx.restore();
+
+    }
+
+}
+
+function frame(now) {
+
+    const dt = Math.min(0.05, (now - previous) / 1000);
+    previous = now;
+
+    if (state !== DONE)
+        update(dt);
+
+    draw();
+
+    requestAnimationFrame(frame);
+
+}
+
+requestAnimationFrame(frame);
+
+</script>
+
+</body>
+</html>

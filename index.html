@@ -3,187 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Button Network</title>
+<title>WinterMere</title>
+
 <style>
-  body {
+body {
     margin: 0;
     padding: 0;
-    background: #FFFFFF;
-    font-family: Verdana, Geneva, Arial, sans-serif;
-    font-size: 12px;
+    background: #fff;
     color: #222;
+    font: 12px Verdana, Geneva, Arial, sans-serif;
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
 
-    #wrap {
-    width: 760px;
-    padding: 12px;
-    }
-
-  h1 {
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    font-size: 26px;
-    margin: 0 0 2px 0;
-    color: #4B0082;
-  }
-
-  .tagline {
-    font-style: italic;
-    color: #555;
-    margin: 0 0 4px 0;
-  }
-
-  .intro {
-    margin: 0 0 12px 0;
-    line-height: 1.4;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #AAAAAA;
-    margin: 10px 0;
-  }
-
-  table.layout {
+#wrap {
     width: 100%;
-    border-collapse: collapse;
-  }
+    max-width: 760px;
+    padding: 12px;
+}
 
-  table.layout td {
-    vertical-align: top;
-    padding: 4px;
-  }
+/* typography */
 
-  .box {
-    padding: 8px;
-  }
+h1 {
+    margin: 0 0 2px;
+    font: 26px "Trebuchet MS", Arial, sans-serif;
+    color: #4B0082;
+}
 
-  .box h2 {
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    font-size: 14px;
-    background: #DDD;
-    margin: -8px -8px 8px -8px;
+a {
+    color: #0000EE;
+}
+
+a:visited {
+    color: #551A8B;
+}
+
+/* layout */
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.half {
+    width: 50%;
+}
+
+.grow {
+    flex: 1;
+}
+
+.searchrow {
+    align-items: center;
+}
+
+.searchrow iframe {
+    border: none;
+    width: 88px;
+    height: 31px;
+    flex-shrink: 0;
+}
+
+/* boxes */
+
+.box h2 {
+    margin: 0;
     padding: 4px 8px;
+    background: #DDD;
     color: #333;
-  }
+    font: bold 14px "Trebuchet MS", Arial, sans-serif;
+}
 
-  .box ul {
+.box .content {
+    padding: 8px;
+}
+
+.box p {
+    margin: 4px 0;
+}
+
+.box ul {
     margin: 0;
     padding-left: 18px;
-  }
+}
 
-  .box p {
-    margin: 4px 0;
-  }
+/* search */
 
-  a {
-    color: #0000EE;
-  }
-
-  a:visited {
-    color: #551A8B;
-  }
-
-  /* search form */
-  .searchbox {
+.searchbox {
+    margin-left: 8px;
     background: #615770;
-    padding: 10px;
-    text-align: center;
-  }
+    padding: 4px;
+}
 
-  .searchbox form {
+.searchbox form {
     margin: 0;
-  }
+    text-align: center;
+}
 
-  .searchbox input[type="text"] {
+.searchbox input[type="text"] {
     width: 300px;
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 12px;
     padding: 2px;
-  }
+    font: 12px Verdana, Arial, sans-serif;
+}
 
-  /* postit */
-  .postit {
+/* post-it */
+
+.postit {
     padding: 10px;
     font-family: "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
-    transform: rotate(-1deg);
-  }
+}
 
-  .postit h2 {
-    background: none;
-    margin: 0 0 6px 0;
+.postit img {
+    float: left;
+    margin-right: 8px;
+    width: 64px;
+    height: 64px;
+}
+
+.postit h2 {
+    margin: 0 0 6px;
     padding: 0;
-    border: none;
-    font-family: inherit;
-    font-size: 14px;
+    background: none;
     color: #6B5D00;
-  }
+    font: bold 14px inherit;
+}
 
-  .footer {
-    text-align: center;
-    font-size: 10px;
-    color: #777;
+.postit::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.footer {
     margin-top: 12px;
     padding-top: 6px;
     border-top: 1px solid #CCC;
-  }
+    text-align: center;
+    color: #777;
+    font-size: 10px;
+}
 </style>
 </head>
+
 <body>
+
 <div id="wrap">
 
+<header class="row">
 
-  <div class="layout" style="display:flex; gap:12px;">
-    <div style="width:50%;">
-      <div class="box">
-        <h2>News</h2>
-        <ul>
-          <li><a href="#">This page is a stub and a demo.</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="width:50%;">
-      <div class="postit">
-        <h2>Hanging out pixels for free!</h2>
-        <p>
-            Button Network is an advertisement and search platform that connects indie websites
-            and allows easier discovery of cool content on indie web.<br>
-        </p>
-      </div>
-    </div>
-  </div>
+<section class="half box">
+<h2>News</h2>
 
-  <br>
-  <div class="nexttoeachother" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1>Button Network</h1>
-    <div class="searchbox" style="flex-grow: 1; margin-left: 20px;">
-        <form action="#" method="get">
-        <input type="text" name="q" placeholder="Search...">
-        <button type="submit">Search</button>
-        </form>
-    </div>
-  </div>
-  <br>
-  <div class="layout" style="display: flex; gap: 4px;">
-    <div style="width: 25%; flex-shrink: 0;">
-      <div class="box">
-        <h2>Pics</h2>
-        <img src="/kawkaw.png" alt="Sorry! I am a placeholder!">
-        <p>Toby Fox please don't kill me it is just a placeholder</p>
-      </div>
-    </div>
-    <div style="width: 75%; flex-shrink: 0;">
-      <div class="box">
-        <h2>Page Index</h2>
-        <p>There are still no places to get you started! Maybe you can help by adding some?</p>
-        <p><a href="#">Submit your site &raquo;</a></p>
-      </div>
-    </div>
-  </div>
+<div class="content">
+<ul>
+<li><a href="#">This page is a stub and a demo.</a></li>
+</ul>
+</div>
+</section>
+
+<aside class="half postit">
+<img src="/kawkaw_deltarune.png" alt="Placeholder">
+
+<h2>WinterMere</h2>
+
+<p>Welcome!</p>
+</aside>
+
+</header>
+
+<br>
+
+<section class="row searchrow">
+
+<iframe src="/logo.html?ink=615770"></iframe>
+
+<div class="grow searchbox">
+<form action="#" method="get">
+<input type="text" name="q" placeholder="Search...">
+<button type="submit">Search</button>
+</form>
+</div>
+
+</section>
+
+<br>
+
+<main class="row">
+
+<section class="grow box">
+
+<h2>Services</h2>
+
+<div class="content">
+<img src="/kawkaw_deltarune.png" alt="Placeholder">
+</div>
+
+</section>
+
+<section class="grow box">
+
+<h2>Page Index</h2>
+
+<div class="content">
+
+<p>There are still no places to get you started! Maybe you can help by adding some?</p>
+
+<p>
+<a href="#">Submit your site &raquo;</a>
+</p>
 
 </div>
+
+</section>
+
+</main>
+
+</div>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>How many waffles?</title>
+</head>
+<body>
+    <h1>The amount of waffles I currently have is 1</h1>
+    <p>The button should add more waffles. Basically going through a quick run with variables and interactivity.</p>
+    <button>Add one!</button>
+    <script>
+        var waffles = 1;
+        const addbtn = document.querySelector("button");
+        const heading = document.querySelector("h1");
+
+        addbtn.addEventListener("click", () => {
+            waffles++
+            heading.textContent = `The amount of waffles I currently have is ${waffles}`;
+            if(waffles > 10) {
+                addbtn.textContent = "yums"
+            }
+        });
+    </script>
+</body>

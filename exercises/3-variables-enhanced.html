@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>To-do list</title>
+    <style>
+        .done {
+            text-decoration: line-through solid black 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To do</h1>
+    <input> <button>Add</button>
+    <ul>
+
+    </ul>
+    <p>The code above should add items into a to-do list array and update the text content. It doesn't have the best way of setting things because we don't append html, we just rebuild the whole list, which is not really resource demanding with few tasks, but can become a hassle in the long usage. But I am currently trying to tie the html to an array, which is needed for the demo, so what gives.</p>
+    <script>
+        // adding a variable array
+        var todo = [];
+
+        // tying the html to js
+        const addbtn = document.querySelector("button");
+        const input = document.querySelector("input");
+        const list = document.querySelector("ul");
+        const header = document.querySelector("h1");
+
+        // adding onclick listener
+        addbtn.addEventListener("click", () => {
+            if(input.value != "") {
+                todo.push(input.value); // we get inner value using input.value, as the text inside is not in html
+                list.innerHTML = todo.map((x) => { // here we map the values from the array to the html
+                    return `<li>${ x }</li>`; // in the end we get an array ["<li>hello</li>", "<li>World</li>"];
+                }).join(''); // and turn it into a string
+            }
+        });
+
+
+
+    </script>
+</body>

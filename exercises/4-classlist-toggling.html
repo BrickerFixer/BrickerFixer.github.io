@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>To-do list</title>
+    <style>
+        .done {
+            text-decoration: line-through solid black 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To do</h1>
+    <input> <button>Add</button>
+    <ul>
+
+    </ul>
+    <p>Despite looking the same, this page has a one more addition: toggling classes on click of an item, so we can mark items as done.</p>
+    <script>
+        // adding a variable array
+        var todo = [];
+
+        // tying the html to js
+        const addbtn = document.querySelector("button");
+        const input = document.querySelector("input");
+        const list = document.querySelector("ul");
+        const header = document.querySelector("h1");
+
+        // adding onclick listener
+        addbtn.addEventListener("click", () => {
+            if(input.value != "") {
+                todo.push(input.value); // we get inner value using input.value, as the text inside is not in html
+                list.innerHTML = todo.map((x) => { // here we map the values from the array to the html
+                    return `<li>${ x }</li>`; // in the end we get an array ["<li>hello</li>", "<li>World</li>"];
+                }).join(''); // and turn it into a string
+            }
+        });
+
+
+
+    </script>
+</body>

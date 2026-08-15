@@ -5,15 +5,49 @@
         .done {
             text-decoration: line-through solid black 1px;
         }
+        .note {
+            width: 320px;
+            background: lightgoldenrodyellow;
+            font-family: "Segoe Script", "Comic Sans", sans-serif;
+            aspect-ratio: 1/1;
+            box-shadow: 0 16px 16px 0 #00000050;
+            justify-self: center;
+        }
+        .inputtable {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            height: 32px;
+            gap: 16px;
+            opacity: 0;
+        }
+        .inputtable button {
+            background: none;
+            border: none;
+        }
+        .inputtable input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #00000050;
+            outline: none;
+        }
+        .inputtable:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <h1>To do</h1>
-    <input> <button>Add</button>
+<div class="note">
+    <div class="inputtable">
+        <input>
+        <button>Add</button>
+    </div>
     <ul>
 
     </ul>
-    <p>Despite looking the same, this page has a one more addition: toggling classes on click of an item, so we can mark items as done.</p>
+</div>
+
     <script>
         // adding a variable array
         var todo = [];

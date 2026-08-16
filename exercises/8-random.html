@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dice</title>
+    </head>
+    <body>
+        <h1>0</h1>
+        <button id="b2">Roll</button>
+        <script>
+            const b2 = document.getElementById("b2");
+            const header = document.querySelector("h1");
+            b2.addEventListener("click", () => {
+                header.textContent = getRandomInt(1,7)
+            });
+            function getRandomInt(min, max) {
+                const minCeiled = Math.ceil(min);
+                const maxFloored = Math.floor(max);
+                return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YOUR IP...</title>
+</head>
+<body>
+<h1></h1>
+<p>Thanks to a free <a href="https://wttr.in/">wttr.in</a> API, we can query the weather effortlessly, which i will probably develop into a full modern looking weather page. (will have that as an experiment right now)</p>
+<p>Please, come to their page, give 'em a star on github!</p>
+    <script>        
+getText("https://wttr.in/Kilimanjaro?0TFQdA&format=%t");
+
+async function getText(file) {
+  let myObject = await fetch(file);
+  let myText = await myObject.text();
+  document.querySelector("h1").innerHTML = `The current temperature in Kilimanjaro is ${myText}`;
+}
+    </script>
+</body>
+</html>

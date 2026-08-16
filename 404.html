@@ -1,8 +1,52 @@
 <!DOCTYPE html>
 <head>
     <title>Bro...</title>
+    <style>
+        body {
+            margin: 0 16px;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            gap: 16px;
+        }
+        .header h1 {
+            background: black;
+            color: white;
+            width: max-content;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 100;
+        }
+        .visitorcard {
+            display: flex;
+            max-width: 800px;
+            justify-self: center;
+        }
+        img {
+            aspect-ratio: 1/1;
+            height: max-content;
+            align-self: center;
+        }
+        .header * {
+            margin: 0;
+            align-self: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Well, that's unfortunate.</h1>
-    <img src="/assets/house256.png">
+    <div class="header"><h1>Waffuru</h1><p>Secret place</p></div>
+    <div class="visitorcard">
+        <div class="text">
+            <h1>Welcome to the secret place of mine!</h1>
+            <p>Here are the instructions on how you can visit it again:</p>
+            <ul>
+                <li>Try to visit some project on github pages that doesn't exist anymore. (ex. badass-kde-html-bg)</li>
+                <li>Mistype the URL of a webpage.</li>
+            </ul>
+            <p>If you think that I lead you here on purpose from some existing project, then you can submit an issue on github, and I can probably explain this or lead you somewhere else.</p>
+            <a href="/">"Get me out of here!"</a>
+            <p>And remember: you did not see anything.</p>
+        </div>
+        <img src="/assets/house256.png">
+    </div>
 </body>

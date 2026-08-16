@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>For loops</title>
+</head>
+<body>
+    <p></p>
+    <button>See what this does</button>
+    <script>
+        const story = "Apparently the JS loops are defined just like the normal C-like loops, so that, at least, enlightens me.\n";
+        const text = document.querySelector("p");
+        const starter = document.querySelector("button");
+
+        starter.addEventListener("click", () => {
+            for(i=0;i!=story.length;i++) {
+                appendonemore(i);
+            }
+        });
+
+        function appendonemore(i){
+            setTimeout(function() {
+                text.textContent += story[i];
+            }, 10*i)
+        }
+    </script>
+</body>

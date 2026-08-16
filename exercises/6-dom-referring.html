@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <title>Referring by class and ID</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <button id="rb">Red</button>
+    <button id="bb">Blue</button>
+    <p>The text above should change colors based on the clicking of the buttons. the only thing that differenciates these buttons from each other is an ID.</p>
+    <script>
+        var currcolor = "#000000";
+        const header = document.querySelector("h1");
+        const rb = document.getElementById("rb");
+        const bb = document.getElementById("bb");
+        rb.addEventListener("click", () => {
+            currcolor = "#FF0000";
+            header.style.color = currcolor;
+        });
+        bb.addEventListener("click", () => {
+            currcolor = "#0000FF";
+            header.style.color = currcolor;
+        });
+    </script>
+</body>

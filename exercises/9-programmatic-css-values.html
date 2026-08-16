@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check this shit image processing</title>
+    <style>
+        img {
+            justify-self: center;
+            align-self: center;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <img src="/assets/house256.png">
+<script>
+    const imageel = document.querySelector("img");
+    document.addEventListener("mousemove", function(event) {
+        x = event.clientX;
+        y = event.clientY;
+        winx = window.innerWidth/2;
+        winy = window.innerHeight;
+        imageel.style.filter = `blur(${Math.abs(x-winx)/16}px) grayscale(${Math.abs(y/winy)})`;
+    });
+</script>
+</body>
+</html>

@@ -4,10 +4,19 @@
     <title>Hello Canvas!</title>
 </head>
 <body>
-        <canvas id="canvas" width="800" height="200"></canvas>
+        <canvas id="canvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+        <p>This picture is drawn fully using javascript.</p>
         <script>
           const canvas = document.querySelector("canvas");
           const ctx = canvas.getContext("2d");
+          
+          ctx.rotate(Math.PI/4);
+          ctx.lineWidth = "2px";
+          ctx.strokeRect(100, 0, 300, 300);
+          ctx.font = "30px serif";
+          ctx.rotate(-Math.PI/4);
+          ctx.textAlign = "center";
+          ctx.fillText("Hello Canvas!", 250, 150)
         </script>
   </body>
 </html>

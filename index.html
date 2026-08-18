@@ -1,32 +1,216 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Training javascript to finally rehab from AI help</title>
+    <title>Training javascript</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #ffffff;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #000000;
+        }
+
         body {
             max-width: 800px;
-            justify-self: center;
+            margin: 0 auto;
+        }
+
+        #header {
+            width: 800px;
+            height: 90px;
+            background-color: #005f6b;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,0.10) 0px,
+                    rgba(255,255,255,0.10) 1px,
+                    rgba(255,255,255,0) 1px,
+                    rgba(255,255,255,0) 6px
+                ),
+                linear-gradient(
+                    90deg,
+                    #007c8a 0px,
+                    #3ba9a8 260px,
+                    #ffffff 800px
+                );
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        #header h1 {
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            font-size: 28px;
+            font-weight: 100;
+            font-style: italic;
+            color: #ffffff;
+            text-shadow: 1px 1px 0px #003f47;
+            letter-spacing: -1px;
+            margin-left: 16px;
+        }
+
+        #navbar {
+            height: 22px;
+            background-color: #000000;
+            font-size: 10px;
+            line-height: 22px;
+            padding-left: 8px;
+        }
+
+        #navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 14px;
+        }
+
+        #navbar a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+
+        /* ==== BODY CONTENT ==== */
+        #content {
+            width: 780px;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        #content p {
+            line-height: 15px;
+        }
+
+        .intro-box {
+            border: 1px solid #99b3b8;
+            background-color: #eef7f7;
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+
+        .intro-box p {
+            margin-bottom: 6px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: #003f47;
+            font-size: 13px;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            padding-bottom: 2px;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #99b3b8;
+        }
+
+        h3 {
+            color: #005f6b;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 2px;
+        }
+
+        ol {
+            list-style: none;
+            margin: 0 0 10px 0;
+            padding: 0;
+            border: 1px solid #99b3b8;
+            counter-reset: item;
+        }
+
+        ol li {
+            counter-increment: item;
+            padding: 4px 8px;
+            border-bottom: 1px solid #d9e4e4;
+        }
+
+        ol li:last-child {
+            border-bottom: none;
+        }
+
+        ol li:nth-child(odd) {
+            background-color: #f5f8f8;
+        }
+
+        ol li:before {
+            content: counter(item) ". ";
+            color: #005f6b;
+            font-weight: bold;
+        }
+
+        ol li a {
+            color: #0033cc;
+            text-decoration: underline;
+        }
+
+        ol li a:visited {
+            color: #660099;
+        }
+
+        ol li a:hover {
+            color: #ff0000;
+        }
+
+        #footer {
+            width: 800px;
+            padding: 8px 0;
+            font-size: 9px;
+            color: #555544;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <p>This page is an index for my javascript rehab sessions that will probably help me code without any help from AI (even the doc search or checking/debugging the code)</p>
-    <p>Why does the webpage not have any design whatsoever? It's because I don't want to focus on it, simple as that. I can do CSS and html perfectly, it's just that I specifically want to learn client-side javascript first.</p>
-    <h2>Page Index</h2>
-    <h3>Bases of all bases</h3>
-    <ol>
-        <li><a href="/exercises/1-hello-world.html">Hello World</a></li>
-        <li><a href="/exercises/2-variables.html">Variables (how many waffles do I have?)</a></li>
-        <li><a href="/exercises/3-variables-enhanced.html">Arrays (To-do page)</a></li>
-        <li><a href="/exercises/4-classlist-toggling.html">Class-list toggling (Finishing to-do)</a></li>
-        <li><a href="/exercises/5-boss-todo-app.html">Boss: Actually finished, small to-do app.</a></li>
-    </ol>
-    <h3>Some more DOM manipulation, more bases</h3>
-    <ol>
-        <li><a href="/exercises/6-dom-referring.html">Learning how to refer by ID and class (red or blue?)</a></li>
-        <li><a href="/exercises/7-for-loops.html">For loops (typewriter)</a></li>
-        <li><a href="/exercises/8-random.html">Random (dice)</a></li>
-        <li><a href="/exercises/9-programmatic-css-values.html">Modding CSS (in a cool way)</a></li>
-        <li><a href="/exercises/10-boss-fetch.html">Boss: Weather in Kilimanjaro (learning how to fetch!)</a></li>
-    </ol>
+
+    <div id="header">
+        <h1>Waffuru's JS practice</h1>
+    </div>
+
+    <div id="navbar">
+        <a href="#top">Home</a>
+        <a href="#basics">Bases of all bases</a>
+        <a href="#dom">DOM manipulation</a>
+    </div>
+
+    <div id="content">
+
+        <div class="intro-box">
+            <p>This page is an index for my javascript rehab sessions that will probably help me code without any help from AI (even the doc search or checking/debugging the code).</p>
+        </div>
+        <h3 id="basics2">Bases of all bases</h3>
+        <ol>
+            <li><a href="/exercises/1-hello-world.html">Hello World</a></li>
+            <li><a href="/exercises/2-variables.html">Variables (how many waffles do I have?)</a></li>
+            <li><a href="/exercises/3-variables-enhanced.html">Arrays (To-do page)</a></li>
+            <li><a href="/exercises/4-classlist-toggling.html">Class-list toggling (Finishing to-do)</a></li>
+            <li><a href="/exercises/5-boss-todo-app.html">Boss: Actually finished, small to-do app.</a></li>
+        </ol>
+
+        <h3 id="dom">Some more DOM manipulation, more bases</h3>
+        <ol>
+            <li><a href="/exercises/6-dom-referring.html">Learning how to refer by ID and class (red or blue?)</a></li>
+            <li><a href="/exercises/7-for-loops.html">For loops (typewriter)</a></li>
+            <li><a href="/exercises/8-random.html">Random (dice)</a></li>
+            <li><a href="/exercises/9-programmatic-css-values.html">Modding CSS (in a cool way)</a></li>
+            <li><a href="/exercises/10-boss-fetch.html">Boss: Weather in Kilimanjaro (learning how to fetch!)</a></li>
+        </ol>
+
+    </div>
+
+    <div id="footer">
+        <img src="assets/bestviewed16bit.gif">
+        <img src="assets/css3.gif">
+    </div>
+
 </body>
+</html>

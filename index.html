@@ -6,6 +6,7 @@
         * {
             margin: 0;
             padding: 0;
+            image-rendering: pixelated;
         }
 
         html, body {
@@ -21,38 +22,9 @@
         }
 
         #header {
-            width: 800px;
-            height: 90px;
-            background-color: #005f6b;
-            background-image:
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(255,255,255,0.10) 0px,
-                    rgba(255,255,255,0.10) 1px,
-                    rgba(255,255,255,0) 1px,
-                    rgba(255,255,255,0) 6px
-                ),
-                linear-gradient(
-                    90deg,
-                    #007c8a 0px,
-                    #3ba9a8 260px,
-                    #ffffff 800px
-                );
             position: relative;
             overflow: hidden;
             display: flex;
-            align-items: center;
-        }
-
-        #header h1 {
-            font-family: "Trebuchet MS", Verdana, sans-serif;
-            font-size: 28px;
-            font-weight: 100;
-            font-style: italic;
-            color: #ffffff;
-            text-shadow: 1px 1px 0px #003f47;
-            letter-spacing: -1px;
-            margin-left: 16px;
         }
 
         #navbar {
@@ -99,16 +71,6 @@
 
         .intro-box p:last-child {
             margin-bottom: 0;
-        }
-
-        h2 {
-            color: #003f47;
-            font-size: 13px;
-            font-family: "Trebuchet MS", Verdana, sans-serif;
-            padding-bottom: 2px;
-            margin-top: 18px;
-            margin-bottom: 6px;
-            border-bottom: 1px solid #99b3b8;
         }
 
         h3 {
@@ -172,9 +134,7 @@
 </head>
 <body>
 
-    <div id="header">
-        <h1>Waffuru's JS practice</h1>
-    </div>
+    <canvas id="header" width="800" height="90"></canvas>
 
     <div id="navbar">
         <a href="#top">Home</a>
@@ -187,7 +147,7 @@
         <div class="intro-box">
             <p>This page is an index for my javascript rehab sessions that will probably help me code without any help from AI (even the doc search or checking/debugging the code).</p>
         </div>
-        <h3 id="basics2">Bases of all bases</h3>
+        <h3 id="basics">Bases of all bases</h3>
         <ol>
             <li><a href="/exercises/1-hello-world.html">Hello World</a></li>
             <li><a href="/exercises/2-variables.html">Variables (how many waffles do I have?)</a></li>
@@ -207,13 +167,116 @@
         <h3 id="canvas">Canvas and advanced graphics (maybe some base64 too!)</h3>
         <ol>
             <li><a href="/exercises/11-canvas-beginning.html">Hello Canvas!</a></li>
+            <li><a href="/exercises/12-canvas-patterns.html">Something harder... (canvas patterns)</a></li>
+            <li><a href="/exercises/13-canvas-animation.html">Mini-boss: Animation</a></li>
         </ol>
     </div>
 
     <div id="footer">
-        <img src="assets/bestviewed16bit.gif">
+        <img src="assets/hicolor.gif">
         <img src="assets/css3.gif">
+        <img src="assets/js.png">
+        <img src="assets/nocookie.gif">
+        <img src="assets/publicdomain.gif">
+        <img src="assets/nogluck.gif">
+        <img src="assets/webmoney.gif">
     </div>
 
+
+
+
+<script>
+  const canvas = document.getElementById("header");
+  const ctx = canvas.getContext("2d");
+
+  function drawHeaderBackground() {
+    const grad = ctx.createLinearGradient(0, 0, 800, 0);
+    grad.addColorStop(0.5, "black");
+    grad.addColorStop(1, "white");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 800, 90);
+
+    const patternCanvas = document.createElement("canvas");
+    const patternContext = patternCanvas.getContext("2d");
+    patternCanvas.width = 800;
+    patternCanvas.height = 4;
+    patternContext.lineWidth = 1;
+    patternContext.strokeStyle = "white";
+    patternContext.moveTo(0, 0);
+    patternContext.lineTo(800, 0);
+    patternContext.stroke();
+    const pattern = ctx.createPattern(patternCanvas, "repeat");
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = 'italic 28px "Trebuchet MS", Verdana, sans-serif';
+    ctx.fillStyle = "black";
+    ctx.fillText("Waffuru's JS practice", 18, 57);
+    ctx.fillStyle = "white";
+    ctx.fillText("Waffuru's JS practice", 16, 55);
+  }
+
+  // Spinning, point-approximated square that looks like ps1 rendering approx
+  const squareSize = 40;
+  const centerX = 800 - 55;
+  const centerY = 45;
+  const roundTo = 8;
+
+  let angle = 0;
+  const angularSpeed = 0.1;
+
+  function snap(v, grid) {
+    return Math.round(v / grid) * grid;
+  }
+
+  function drawSpinningSquare() {
+    const h = squareSize / 2;
+    const localCorners = [
+      { x: -h, y: -h },
+      { x:  h, y: -h },
+      { x:  h, y:  h },
+      { x: -h, y:  h }
+    ];
+
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
+
+    const worldCorners = localCorners.map(c => {
+      const rx = c.x * cosA - c.y * sinA;
+      const ry = c.x * sinA + c.y * cosA;
+      return {
+        x: snap(centerX + rx, roundTo),
+        y: snap(centerY + ry, roundTo)
+      };
+    });
+
+    ctx.strokeStyle = "#3ba9a8";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    worldCorners.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
+    ctx.stroke();
+
+    angle += angularSpeed;
+  }
+
+  const FPS = 15;
+  const FRAME_DURATION = 1000 / FPS;
+  let lastFrameTime = 0;
+
+  function renderLoop(timestamp) {
+    if (timestamp - lastFrameTime >= FRAME_DURATION) {
+      lastFrameTime = timestamp;
+      drawHeaderBackground();
+      drawSpinningSquare();
+    }
+    requestAnimationFrame(renderLoop);
+  }
+
+  requestAnimationFrame(renderLoop);
+</script>
 </body>
 </html>

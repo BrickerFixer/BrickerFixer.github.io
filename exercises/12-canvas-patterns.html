@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Header Canvas!</title>
+</head>
+<body>
+        <canvas id="header" width="800" height="90"></canvas>
+        <p>Hey, maybe this can replace the header, if I add something interesting and animated.</p>
+        <script>
+          const canvas = document.getElementById("header");
+          const ctx = canvas.getContext("2d");
+          const grad = ctx.createLinearGradient(0, 0, 800, 0);
+          grad.addColorStop(0, "#007c8a");
+          grad.addColorStop(0.5, "#3ba9a8")
+          grad.addColorStop(1, "white");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, 800, 90);
+
+
+          // Create a pattern, offscreen
+const patternCanvas = document.createElement("canvas");
+const patternContext = patternCanvas.getContext("2d");
+
+// Give the pattern a width and height of 50
+patternCanvas.width = 800;
+patternCanvas.height = 4;
+
+patternContext.lineWidth = 1;
+patternContext.strokeStyle = "white";
+// Give the pattern a background color and draw an arc
+patternContext.moveTo(0, 0);
+patternContext.lineTo(800, 0);
+patternContext.stroke();
+const pattern = ctx.createPattern(patternCanvas, "repeat");
+ctx.fillStyle = pattern;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.font = 'italic 28px "Trebuchet MS", Verdana, sans-serif';
+ctx.fillStyle = "#003f47";
+ctx.fillText("Waffuru's JS practice", 18, 57);
+ctx.fillStyle = "white";
+ctx.fillText("Waffuru's JS practice", 16, 55);
+        </script>
+  </body>
+</html>

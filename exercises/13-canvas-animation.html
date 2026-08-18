@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello animated Canvas!</title>
+</head>
+<body>
+        <canvas id="header" width="800" height="90"></canvas>
+<script>
+  const canvas = document.getElementById("header");
+  const ctx = canvas.getContext("2d");
+
+  function drawHeaderBackground() {
+    const grad = ctx.createLinearGradient(0, 0, 800, 0);
+    grad.addColorStop(0, "#007c8a");
+    grad.addColorStop(0.5, "#3ba9a8");
+    grad.addColorStop(1, "white");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 800, 90);
+
+    const patternCanvas = document.createElement("canvas");
+    const patternContext = patternCanvas.getContext("2d");
+    patternCanvas.width = 800;
+    patternCanvas.height = 4;
+    patternContext.lineWidth = 1;
+    patternContext.strokeStyle = "white";
+    patternContext.moveTo(0, 0);
+    patternContext.lineTo(800, 0);
+    patternContext.stroke();
+    const pattern = ctx.createPattern(patternCanvas, "repeat");
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = 'italic 28px "Trebuchet MS", Verdana, sans-serif';
+    ctx.fillStyle = "#003f47";
+    ctx.fillText("Waffuru's JS practice", 18, 57);
+    ctx.fillStyle = "white";
+    ctx.fillText("Waffuru's JS practice", 16, 55);
+  }
+
+  // Spinning, point-approximated square that looks like ps1 rendering approx
+  const squareSize = 40;
+  const centerX = 800 - 55;
+  const centerY = 45;
+  const roundTo = 8;
+
+  let angle = 0;
+  const angularSpeed = 0.1;
+
+  function snap(v, grid) {
+    return Math.round(v / grid) * grid;
+  }
+
+  function drawSpinningSquare() {
+    const h = squareSize / 2;
+    const localCorners = [
+      { x: -h, y: -h },
+      { x:  h, y: -h },
+      { x:  h, y:  h },
+      { x: -h, y:  h }
+    ];
+
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
+
+    const worldCorners = localCorners.map(c => {
+      const rx = c.x * cosA - c.y * sinA;
+      const ry = c.x * sinA + c.y * cosA;
+      return {
+        x: snap(centerX + rx, roundTo),
+        y: snap(centerY + ry, roundTo)
+      };
+    });
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    worldCorners.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
+    ctx.stroke();
+
+    angle += angularSpeed;
+  }
+
+  const FPS = 15;
+  const FRAME_DURATION = 1000 / FPS;
+  let lastFrameTime = 0;
+
+  function renderLoop(timestamp) {
+    if (timestamp - lastFrameTime >= FRAME_DURATION) {
+      lastFrameTime = timestamp;
+      drawHeaderBackground();
+      drawSpinningSquare();
+    }
+    requestAnimationFrame(renderLoop);
+  }
+
+  requestAnimationFrame(renderLoop);
+</script>
+  </body>
+</html>

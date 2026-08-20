@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Just a small Base64 string encode</title>
+</head>
+<body>
+    <h1>B64</h1>
+    <p>the header above contains the "Hello, world" in base64</p>
+    <script>
+        const result = document.querySelector("h1");
+        const encodedData = window.btoa("Hello, world");
+        result.textContent = encodedData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Base64</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #ffffff;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #000000;
+        }
+
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #header {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+        }
+
+        #navbar {
+            height: 22px;
+            background-color: #000000;
+            font-size: 10px;
+            line-height: 22px;
+            padding-left: 8px;
+        }
+
+        #navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 14px;
+        }
+
+        #navbar a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+
+        #content {
+            width: 780px;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        #content p {
+            line-height: 15px;
+        }
+
+        .visitorcard {
+            display: flex;
+            gap: 12px;
+        }
+
+        .visitorcard .text p {
+            margin-bottom: 6px;
+        }
+
+        .visitorcard .text ul {
+            margin: 0 0 6px 20px;
+        }
+
+        .visitorcard .text li {
+            margin-bottom: 2px;
+        }
+
+        .visitorcard img {
+            aspect-ratio: 1/1;
+            height: max-content;
+            align-self: center;
+            border: 1px solid #99b3b8;
+        }
+
+        h2 {
+            color: #003f47;
+            font-size: 13px;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            padding-bottom: 2px;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #99b3b8;
+        }
+
+        ol {
+            list-style: none;
+            margin: 0 0 10px 0;
+            padding: 0;
+            border: 1px solid #99b3b8;
+        }
+
+        ol li {
+            padding: 4px 8px;
+            border-bottom: 1px solid #d9e4e4;
+        }
+
+        ol li:last-child {
+            border-bottom: none;
+        }
+
+        ol li:nth-child(odd) {
+            background-color: #f5f8f8;
+        }
+
+        ol li a {
+            color: #0033cc;
+            text-decoration: underline;
+        }
+
+        ol li a:visited {
+            color: #660099;
+        }
+
+        ol li a:hover {
+            color: #ff0000;
+        }
+
+        .visitorcard a {
+            color: #0033cc;
+            text-decoration: underline;
+        }
+
+        .visitorcard a:hover {
+            color: #ff0000;
+        }
+
+        #footer {
+            width: 800px;
+            padding: 8px 0;
+            font-size: 9px;
+            color: #555544;
+            display: flex;
+            justify-content: center;
+        }
+
+        .description {
+    margin-bottom: 10px;
+}
+
+.converter-box {
+    border: 1px solid #99b3b8;
+    background-color: #f5f8f8;
+    padding: 8px;
+}
+
+.converter-box label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.converter-box textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+
+    border: 1px solid #777777;
+    background-color: #ffffff;
+
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+.converter-box textarea:focus {
+    outline: none;
+    border-color: #003f47;
+}
+
+.converter-actions {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d9e4e4;
+}
+
+
+#clear {
+    float: right;
+    margin-right: 0;
+}
+
+#status {
+    margin-top: 8px;
+    padding: 4px 6px;
+
+    border: 1px solid #d9e4e4;
+    background-color: #f5f8f8;
+
+    color: #555544;
+    font-size: 10px;
+}
+
+.info {
+    margin-top: 12px;
+}
+    </style>
+</head>
+<body>
+
+    <canvas id="header" width="800" height="90"></canvas>
+
+    <div id="navbar">
+        <a href="/index.html">Home</a>
+        <a href="/index.html#basics">Bases of all bases</a>
+        <a href="/index.html#dom">DOM manipulation</a>
+    </div>
+
+    <div id="converter">
+
+    <h2>Base64 converter</h2>
+
+    <p class="description">
+        Enter text or a Base64-encoded string below, then choose what you want
+        to do with it.
+    </p>
+
+    <div class="converter-box">
+
+        <label for="input">Input:</label>
+        <textarea id="input" rows="8"></textarea>
+
+        <div class="converter-actions">
+            <button id="encode">Encode to Base64</button>
+            <button id="decode">Decode from Base64</button>
+            <button id="clear">Clear</button>
+        </div>
+
+        <label for="output">Output:</label>
+        <textarea id="output" rows="8" readonly></textarea>
+
+    </div>
+
+</div>
+
+<script>
+        const input = document.getElementById("input");
+        const output = document.getElementById("output");
+        const encodeBtn = document.getElementById("encode");
+        const decodeBtn = document.getElementById("decode");
+        const clearBtn = document.getElementById("clear");
+
+        encodeBtn.addEventListener("click", () => {
+            output.value = window.btoa(input.value);
+        });
+        decodeBtn.addEventListener("click", () => {
+            output.value = window.atob(input.value);
+        });
+        clearBtn.addEventListener("click", () => {input.value = ""})
+</script>
+
+<script>
+  const canvas = document.getElementById("header");
+  const ctx = canvas.getContext("2d");
+
+  function drawHeaderBackground() {
+    const grad = ctx.createLinearGradient(0, 0, 800, 0);
+    grad.addColorStop(0.5, "black");
+    grad.addColorStop(1, "white");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 800, 90);
+
+    const patternCanvas = document.createElement("canvas");
+    const patternContext = patternCanvas.getContext("2d");
+    patternCanvas.width = 800;
+    patternCanvas.height = 4;
+    patternContext.lineWidth = 1;
+    patternContext.strokeStyle = "white";
+    patternContext.moveTo(0, 0);
+    patternContext.lineTo(800, 0);
+    patternContext.stroke();
+    const pattern = ctx.createPattern(patternCanvas, "repeat");
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = 'italic 28px "Trebuchet MS", Verdana, sans-serif';
+    ctx.fillStyle = "black";
+    ctx.fillText("Base64 Conversion", 18, 57);
+    ctx.fillStyle = "white";
+    ctx.fillText("Base64 Conversion", 16, 55);
+  }
+
+  // Spinning, point-approximated square that looks like ps1 rendering approx
+  const squareSize = 40;
+  const centerX = 800 - 55;
+  const centerY = 45;
+  const roundTo = 8;
+
+  let angle = 0;
+  const angularSpeed = 0.1;
+
+  function snap(v, grid) {
+    return Math.round(v / grid) * grid;
+  }
+
+  function drawSpinningSquare() {
+    const h = squareSize / 2;
+    const localCorners = [
+      { x: -h, y: -h },
+      { x:  h, y: -h },
+      { x:  h, y:  h },
+      { x: -h, y:  h }
+    ];
+
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
+
+    const worldCorners = localCorners.map(c => {
+      const rx = c.x * cosA - c.y * sinA;
+      const ry = c.x * sinA + c.y * cosA;
+      return {
+        x: snap(centerX + rx, roundTo),
+        y: snap(centerY + ry, roundTo)
+      };
+    });
+
+    ctx.strokeStyle = "#3ba9a8";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    worldCorners.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
+    ctx.stroke();
+
+    angle += angularSpeed;
+  }
+
+  const FPS = 15;
+  const FRAME_DURATION = 1000 / FPS;
+  let lastFrameTime = 0;
+
+  function renderLoop(timestamp) {
+    if (timestamp - lastFrameTime >= FRAME_DURATION) {
+      lastFrameTime = timestamp;
+      drawHeaderBackground();
+      drawSpinningSquare();
+    }
+    requestAnimationFrame(renderLoop);
+  }
+
+  requestAnimationFrame(renderLoop);
+</script>
+</body>
+</html> 
